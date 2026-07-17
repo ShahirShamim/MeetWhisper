@@ -47,6 +47,24 @@ transcription all happen on your machine.
 4. **Stop** when done — the transcript lands in
    `~/Documents/MeetingTranscripts/` and is one click away in the menu.
 
+## Why this exists
+
+I got tired of seeing Wispr Flow ads everywhere, so I switched to
+[TypeWhisper](https://www.typewhisper.com) for local speech-to-text — and it
+worked really well. The one gap was meetings: my options were each platform's
+built-in transcription tools or some bot that has to *join the call*. Both a
+faff. I just wanted to press record and get the whole thing.
+
+The other problem: tools in this space do too much. I don't want my recorder
+running its own bundled AI summarizer. I want the raw, speaker-separated
+transcript, because my AI agent handles the post-processing — summarization,
+intent extraction, action items — with skills I've already optimized for
+exactly that. MeetWhisper stays out of the way: record, transcribe locally,
+**copy, and dump the full transcript into your preferred agent or AI tool** to
+get your summary and action items out of it.
+
+It's clean, it's elegant, it doesn't try to do much — and it just works.
+
 ## How it works
 
 ```mermaid
