@@ -1,15 +1,60 @@
-# MeetWhisper
+<p align="center">
+  <img src="assets/icon-256.png" width="128" alt="MeetWhisper icon">
+</p>
 
-Fully-local meeting transcriber for macOS. A menu bar app: press record during a
-meeting, press stop when it ends, get an interleaved transcript of what **you** said
-(microphone) vs. what **everyone else** said (system audio). Nothing leaves your Mac.
+<h1 align="center">MeetWhisper</h1>
+
+<p align="center">
+  <b>Fully-local meeting transcription for macOS — who said what, with your audio never leaving the Mac.</b>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/macOS-14.4%2B-blue" alt="macOS 14.4+">
+  <img src="https://img.shields.io/badge/Swift-SwiftUI-orange" alt="SwiftUI">
+  <img src="https://img.shields.io/badge/privacy-100%25%20local-brightgreen" alt="100% local">
+  <img src="https://img.shields.io/github/license/ShahirShamim/MeetWhisper" alt="MIT license">
+</p>
+
+A menu bar app: hit **🎙️ Record** when your meeting starts, **Stop** when it ends,
+and get an interleaved transcript that separates **you** (microphone) from
+**everyone else** (system audio):
 
 ```
-[00:04] Me: Hey, can everyone see my screen?
+[00:04] Me:   Hey, can everyone see my screen?
 [00:09] Them: Yes, looks good.
+[00:15] Me:   Great, so the Q3 numbers...
 ```
+
+No cloud, no accounts, no telemetry — recording, speech detection, and
+transcription all happen on your machine.
+
+## Quick start
+
+1. **Set up [TypeWhisper](https://www.typewhisper.com)** (the local speech engine
+   MeetWhisper talks to): install it, open its **Settings and enable the API
+   server toggle** (port 8978), and download a speech model.
+2. **Install MeetWhisper**: grab the DMG from
+   [Releases](https://github.com/ShahirShamim/MeetWhisper/releases) and drag the
+   app to Applications — or build from source (below).
+   > The app is not notarized. First launch: right-click → **Open**, or run
+   > `xattr -dr com.apple.quarantine /Applications/MeetWhisper.app`
+3. Click **🎙️** in the menu bar → **Record Meeting**, and grant the
+   **Microphone** and **System Audio Recording** prompts.
+4. **Stop** when done — the transcript lands in
+   `~/Documents/MeetingTranscripts/` and is one click away in the menu.
 
 ## How it works
+
+```mermaid
+flowchart LR
+    MIC["🎤 Your mic<br>(AVAudioEngine)"] --> A[mic.wav]
+    SYS["🔊 System audio<br>(Core Audio process tap)"] --> B[system.wav]
+    A --> VAD["Speech detection<br>(energy VAD)"]
+    B --> VAD
+    VAD --> TW["TypeWhisper<br>localhost:8978"]
+    TW --> M["Merge + dedupe"]
+    M --> T["📝 transcript.md<br>Me / Them timeline"]
+```
 
 - **Two separate tracks.** Your mic is recorded with AVAudioEngine (raw capture —
   echo cancellation is off by default because macOS's voice-processing gate emits
@@ -57,6 +102,7 @@ other network requests.
 ```sh
 ./build.sh            # release build → build/MeetWhisper.app
 open build/MeetWhisper.app
+./make-dmg.sh         # optional: package build/MeetWhisper-<version>.dmg
 ```
 
 First recording will prompt for **Microphone** and **System Audio Recording**

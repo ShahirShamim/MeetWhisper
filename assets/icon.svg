@@ -1,0 +1,43 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#3A1D8F"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- macOS-style rounded square with margin -->
+  <rect x="64" y="64" width="896" height="896" rx="200" fill="url(#bg)"/>
+  <rect x="64" y="64" width="896" height="448" rx="200" fill="url(#shine)"/>
+
+  <!-- "Me" bubble (white, violet waveform) -->
+  <g fill="#FFFFFF">
+    <rect x="200" y="290" width="390" height="290" rx="72"/>
+    <path d="M 300 560 L 258 672 L 412 576 Z"/>
+  </g>
+  <g fill="#5B3FD6">
+    <rect x="272" y="395" width="38" height="90" rx="19"/>
+    <rect x="334" y="355" width="38" height="170" rx="19"/>
+    <rect x="396" y="385" width="38" height="110" rx="19"/>
+    <rect x="458" y="340" width="38" height="200" rx="19"/>
+  </g>
+
+  <!-- "Them" bubble (mint, white waveform) drawn on top -->
+  <g fill="#34D399">
+    <rect x="462" y="470" width="360" height="270" rx="66"/>
+    <path d="M 716 720 L 782 826 L 620 732 Z"/>
+  </g>
+  <g fill="#FFFFFF">
+    <rect x="524" y="570" width="36" height="80" rx="18"/>
+    <rect x="582" y="535" width="36" height="150" rx="18"/>
+    <rect x="640" y="560" width="36" height="100" rx="18"/>
+    <rect x="698" y="525" width="36" height="170" rx="18"/>
+  </g>
+
+  <!-- recording dot -->
+  <circle cx="812" cy="478" r="46" fill="#FF5257" stroke="#FFFFFF" stroke-width="14"/>
+</svg>
