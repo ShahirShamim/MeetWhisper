@@ -28,6 +28,10 @@ and get an interleaved transcript that separates **you** (microphone) from
 No cloud, no accounts, no telemetry — recording, speech detection, and
 transcription all happen on your machine.
 
+<p align="center">
+  <img src="assets/screenshot.png" width="320" alt="MeetWhisper menu bar popover">
+</p>
+
 ## Quick start
 
 1. **Set up [TypeWhisper](https://www.typewhisper.com)** (the local speech engine
@@ -97,7 +101,16 @@ app's local HTTP API. Before first use:
 Everything stays on-device: the API is localhost-only and MeetWhisper makes no
 other network requests.
 
-## Build & run
+## Install
+
+### Option A — DMG (no build needed)
+
+Download the DMG from [Releases](https://github.com/ShahirShamim/MeetWhisper/releases),
+open it, and drag **MeetWhisper** to Applications. The build is not notarized, so
+on first launch: right-click → **Open**, or run
+`xattr -dr com.apple.quarantine /Applications/MeetWhisper.app`.
+
+### Option B — build from source
 
 ```sh
 ./build.sh            # release build → build/MeetWhisper.app
